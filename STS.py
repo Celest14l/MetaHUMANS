@@ -3,7 +3,7 @@ import pyttsx3
 import speech_recognition as sr
 
 # Configure your Gemini API key
-genai.configure(api_key='AIzaSyA4emTPlEusX9MCA1E9ttN2ylj4vSP4NkE')  # Replace with your actual API key
+genai.configure(api_key='GEMINI_API_KEY')  # Replace with your actual API key
 
 # Function to convert text to speech using pyttsx3
 def give_output(text):
