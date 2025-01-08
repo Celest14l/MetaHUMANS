@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage - Metahumans Interaction</title>
+    <style>
+        body {
+            background-color: #f5f5f5; /* Very off white */
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+        }
+
+        /* First Navbar */
+        .navbar1 {
+            background-color: rgb(150, 150, 201);
+            color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .navbar1 span {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+        }
+
+        .navbar1 a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .navbar1 img {
+            height: 40px;
+            width: 40px;
+        }
+
+        /* Second Navbar */
+        .navbar2 {
+            background-color: #dda0dd; /* Light purple */
+            padding: 10px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .navbar2 a {
+            text-decoration: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: purple;
+            transition: background-color 0.3s;
+        }
+
+        .navbar2 a:hover {
+            background-color: darkviolet;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            height: calc(100vh - 80px); /* Adjust for navbar height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .metahumans {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        .metahumans img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 2px solid #dda0dd;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .metahumans img:hover {
+            transform: scale(1.1);
+        }
+
+        .container button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #ff69b4; /* Hot pink */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .container button:hover {
+            background-color: #ff1493; /* Deeper pink */
+        }
+    </style>
+</head>
+<body>
+    <!-- First Navbar -->
+    <div class="navbar1">
+        <a href="image.png"><img src="image.png" alt="logo"></a>
+        <span>CRYPTO METAHUMANS INTERACTION BY TAKA</span>
+    </div>
+
+    <!-- Second Navbar -->
+    <div class="navbar2">
+        <a href="{% url 'register' %}">Register</a>
+        <a href="{% url 'login' %}">Login</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Meet namefemale and namemale</h1>
+        <p>Click on the image to start interaction.</p>
+
+        <div class="metahumans">
+            <a href="metahuman1.html">
+                <img src="fmh1.jpg" alt="Metahuman 1">
+            </a>
+            <a href="metahuman2.html">
+                <img src="mmh1.jpg" alt="Metahuman 2">
+            </a>
+        </div>
+
+        <button onclick="startMetahumanFunction()">Submit</button>
+    </div>
+
+    <script>
+        function startMetahumanFunction() {
+            alert("Metahumans interaction started!");
+        }
+    </script>
+</body>
+</html>
