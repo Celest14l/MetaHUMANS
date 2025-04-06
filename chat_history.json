@@ -1,0 +1,44 @@
+[
+    {
+        "content": "hello",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": null,
+        "example": false
+    },
+    {
+        "content": "Hey there! \ud83d\udc4b It's great to chat with you! How's your day going so far? \ud83e\udd14",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "ai",
+        "name": null,
+        "id": null,
+        "example": false,
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "usage_metadata": null
+    },
+    {
+        "content": "how can you help me?",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "human",
+        "name": null,
+        "id": null,
+        "example": false
+    },
+    {
+        "content": "I'm here to assist you in any way I can! \ud83e\udd17 I can help with tasks like checking the weather, sending emails, playing music, or even giving you a news summary. I can also chat with you and try to lift your mood or just keep you company. What do you need help with today? \ud83d\ude0a",
+        "additional_kwargs": {},
+        "response_metadata": {},
+        "type": "ai",
+        "name": null,
+        "id": null,
+        "example": false,
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "usage_metadata": null
+    }
+]

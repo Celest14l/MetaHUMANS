@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Assistant</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #1a1a1a; /* Dark background for the main screen */
+      color: #e0e0e0; /* Light text color for contrast */
+      overflow: hidden;
+    }
+
+    .main-container {
+      display: flex;
+      height: 100vh;
+      background: linear-gradient(135deg, #1a1a1a, #2c2c2c); /* Subtle gradient for depth */
+    }
+
+    .iframe-container {
+      flex: 3;
+      border-right: 2px solid #444;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .iframe-container:hover {
+      border-right-color: #00b7ff; /* Hover effect for iframe border */
+    }
+
+    .iframe-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background-color: #000;
+    }
+
+    .chat-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: #252525; /* Slightly lighter dark shade for chat area */
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+      animation: slideIn 0.5s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .chat-header {
+      padding: 20px;
+      border-bottom: 1px solid #444;
+      font-size: 24px;
+      font-weight: bold;
+      color: #00b7ff; /* Bright accent color for header */
+      background: #1f1f1f;
+      text-align: center;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background: #2a2a2a;
+      scrollbar-width: thin;
+      scrollbar-color: #00b7ff #333;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: #333;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: #00b7ff;
+      border-radius: 4px;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      max-width: 80%;
+      word-wrap: break-word;
+      animation: messageSlide 0.4s ease-out;
+    }
+
+    @keyframes messageSlide {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .message.user {
+      text-align: right;
+      background: #00b7ff; /* Bright blue for user messages */
+      color: #fff;
+      margin-left: auto;
+    }
+
+    .message.bot {
+      text-align: left;
+      background: #444; /* Darker shade for bot messages */
+      color: #e0e0e0;
+      margin-right: auto;
+    }
+
+    .chat-input {
+      border-top: 1px solid #444;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      background: #1f1f1f;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid #555;
+      border-radius: 25px;
+      background: #333;
+      color: #e0e0e0;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .chat-input input:focus {
+      border-color: #00b7ff;
+      box-shadow: 0 0 8px rgba(0, 183, 255, 0.3);
+    }
+
+    .chat-input button {
+      padding: 12px 20px;
+      margin-left: 10px;
+      border: none;
+      background: #00b7ff;
+      color: #fff;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .chat-input button:hover {
+      background: #0095d6;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0, 183, 255, 0.5);
+    }
+
+    .chat-input button:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <div class="iframe-container">
+      <iframe id="myIframe" src="http://127.0.0.1" title="Localhost App" allow="camera; microphone"></iframe>
+    </div>
+    <div class="chat-container">
+      <div class="chat-header">Personal Assistant</div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Type your message here..." />
+        <button id="send-btn">Send</button>
+        <button id="voice-btn">Voice Input</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.onload = function() {
+      fetch("/welcome_pa")
+        .then(response => response.json())
+        .then(data => {
+          addMessage("bot", data.response);
+        })
+        .catch(error => {
+          console.error("Error fetching welcome message:", error);
+        });
+    };
+
+    document.getElementById("send-btn").addEventListener("click", function() {
+      sendMessage();
+    });
+    document.getElementById("user-input").addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+    });
+    document.getElementById("voice-btn").addEventListener("click", function() {
+      startVoiceInput();
+    });
+
+    function startVoiceInput() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert("Your browser does not support speech recognition.");
+        return;
+      }
+      const recognition = new SpeechRecognition();
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+      recognition.start();
+
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        addMessage("user", transcript);
+        sendMessageWithText(transcript);
+      };
+
+      recognition.onerror = function(event) {
+        addMessage("bot", "Voice recognition error: " + event.error);
+      };
+    }
+
+    function sendMessageWithText(message) {
+      fetch("/chat_pa", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ user_input: message })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          addMessage("bot", "Error: " + data.error);
+        } else {
+          addMessage("bot", data.response);
+        }
+      })
+      .catch(error => {
+        addMessage("bot", "Error: " + error);
+      });
+    }
+
+    function sendMessage() {
+      const inputField = document.getElementById("user-input");
+      const message = inputField.value.trim();
+      if (message === "") return;
+      addMessage("user", message);
+      inputField.value = "";
+      sendMessageWithText(message);
+    }
+
+    function addMessage(sender, text) {
+      const chatMessages = document.getElementById("chat-messages");
+      const messageDiv = document.createElement("div");
+      messageDiv.className = "message " + sender;
+      messageDiv.innerHTML = text;
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+  </script>
+</body>
+</html>

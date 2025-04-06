@@ -1,0 +1,29 @@
+Sat Apr  5 23:08:19 2025: Error checking API status: HTTPConnectionPool(host='localhost', port=8011): Max retries exceeded with url: /status (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001EC9CC172E0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+Sat Apr  5 23:08:23 2025: Error loading USD file: HTTPConnectionPool(host='localhost', port=8011): Max retries exceeded with url: /A2F/USD/Load (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001EC9C9CC0D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+Sat Apr  5 23:08:27 2025: Error activating Stream LiveLink: HTTPConnectionPool(host='localhost', port=8011): Max retries exceeded with url: /A2F/Exporter/ActivateStreamLivelink (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001EC9C9CCE50>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+Sat Apr  5 23:08:32 2025: Error enabling audio stream: HTTPConnectionPool(host='localhost', port=8011): Max retries exceeded with url: /A2F/Exporter/SetStreamLivelinkSettings (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001EC9CC17520>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+Sat Apr  5 23:08:36 2025: Error setting looping to false: HTTPConnectionPool(host='localhost', port=8011): Max retries exceeded with url: /A2F/Player/SetLooping (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001EC9CC15F60>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))
+2025-04-06 00:39:53: VLC_INSTALL_PATH not found: C:/VLC # Only needed for Windows direct run
+2025-04-06 00:39:56: Initial A2F setup failed: 'str' object has no attribute 'get'
+2025-04-06 00:39:56: GROQ_API_KEY not found.
+2025-04-06 00:43:16: VLC_INSTALL_PATH not found: C:/VLC # Only needed for Windows direct run
+2025-04-06 00:43:19: Initial A2F setup failed: 'str' object has no attribute 'get'
+2025-04-06 00:43:47: VLC_INSTALL_PATH not found: C:/VLC # Only needed for Windows direct run
+2025-04-06 00:43:50: Initial A2F setup failed: 'str' object has no attribute 'get'
+2025-04-06 00:44:42: VLC_INSTALL_PATH not found: C:/VLC # Only needed for Windows direct run
+2025-04-06 00:44:45: Initial A2F setup failed: 'str' object has no attribute 'get'
+2025-04-06 01:22:37: VLC_INSTALL_PATH not found: C:/VLC # Only needed for Windows direct run
+2025-04-06 01:22:40: A2F setup failed: 'str' object has no attribute 'get'
+Sun Apr  6 02:47:50 2025: GROQ_API_KEY not set.
+2025-04-06 14:40:37: Connection refused by A2F API at http://localhost:8011
+2025-04-06 14:40:37: Fatal error starting continuous emotion detection: name 'FER' is not defined
+2025-04-06 14:40:38: Emotion detection thread failed to start.
+2025-04-06 14:40:55: Connection refused by A2F API at http://localhost:8011
+2025-04-06 14:41:01: Connection refused by A2F API at http://localhost:8011
+2025-04-06 14:41:19: Connection refused by A2F API at http://localhost:8011
+2025-04-06 14:43:01: Fatal error starting continuous emotion detection: name 'FER' is not defined
+2025-04-06 14:43:02: Emotion detection thread failed to start.
+2025-04-06 14:51:37: Fatal error starting continuous emotion detection: name 'FER' is not defined
+2025-04-06 14:51:38: Emotion detection thread failed to start.
+2025-04-06 15:02:45: Fatal error starting continuous emotion detection: name 'FER' is not defined
+2025-04-06 15:02:46: Emotion detection thread failed to start.
